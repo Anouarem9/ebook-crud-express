@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= ebook.titre %></title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .ebook-container {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+        text-align: center;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 16px;
+        color: #555;
+        margin: 8px 0;
+      }
+
+      strong {
+        color: #222;
+      }
+
+      img {
+        width: 100%;
+        max-width: 250px;
+        height: auto;
+        border-radius: 8px;
+        margin: 15px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .back-link,
+      .edit-link {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 15px;
+        background-color: #5b5b5b;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: background 0.3s;
+      }
+
+      .back-link:hover {
+        background-color: #4d4d4d;
+      }
+
+      .edit-link {
+        background-color: #45a049;
+      }
+
+      .edit-link:hover {
+        background-color: #38833c;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ebook-container">
+      <h1><%= ebook.titre %></h1>
+      <p><strong>Description:</strong> <%= ebook.description %></p>
+      <p><strong>Date:</strong> <%= ebook.date_edition %></p>
+      <p><strong>Category:</strong> <%= ebook.categorie %></p>
+      <p><strong>Price:</strong> $<%= ebook.prix %></p>
+
+      <img src="<%= ebook.photo %>" alt="Ebook Cover" />
+      <br />
+      <a href="/ebooks/edit/<%= ebook.ISBN %>" class="edit-link">Edit</a>
+      <a href="/ebooks/" class="back-link">Back to List</a>
+    </div>
+  </body>
+</html>
