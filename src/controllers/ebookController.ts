@@ -33,8 +33,8 @@ const index = async (req: Request, res: Response) => {
     const ebooks = await getAllEbooks(req.query);
     const categories = await getCategories();
     return res.render("index", { ebooks, categories, titre, categorie, sort, sortBy, message });
-  } catch (err) {
-    return res.status(500).send("Database error" + err);
+  } catch {
+    return res.status(500).send("Database error");
   }
 };
 
@@ -49,7 +49,7 @@ const show = async (req: Request, res: Response) => {
       return res.status(404).send("Ebook not found");
     }
     return res.render("details", { ebook });
-  } catch (err) {
+  } catch {
     return res.status(500).send("Database error");
   }
 };
@@ -69,7 +69,7 @@ const edit = async (req: Request, res: Response) => {
       return res.status(404).send("Ebook not found");
     }
     return res.render("edit", { ebook });
-  } catch (err) {
+  } catch {
     return res.status(500).send("Database error");
   } 
 };
@@ -94,7 +94,7 @@ const destroy = async (req: Request, res: Response) => {
     const isSuccess = await deleteEbook(ISBN);
     const message = isSuccess ? "File deleted successfully" : "Could not delete file";
     return res.redirect("/ebooks?message=" + encodeURIComponent(message));
-  } catch (err) {
+  } catch {
     return res.status(500).send("Database error");
   }
 };
@@ -110,7 +110,7 @@ const store = async (req: Request, res: Response) => {
     }
     await addNewEbook(req.body);
     return res.redirect("/ebooks");
-  } catch (err) {
+  } catch {
     return res.status(500).send("Database error");
   }
 };
@@ -131,7 +131,7 @@ const update = async (req: Request, res: Response) => {
     }
 
     return res.status(400).send("Ebook doesn't exist.");
-  } catch (err) {
+  } catch {
     return res.status(500).send("Database error");
   }
 };
